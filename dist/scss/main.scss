@@ -1,0 +1,510 @@
+@import "./config";
+@import "./mobile";
+
+#bg-image {
+  @include background();
+  @include Body();
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 400;
+
+  &.lg-heading {
+    font-size: 2.5rem;
+  }
+  &.sm-heading {
+    padding: 0.2rem 1rem;
+    margin-bottom: 2rem;
+    // background: rgba(lighten($primary-color, 2), 0.5);
+  }
+}
+.txt-secondary {
+  color: $secondary-color;
+}
+
+header {
+  width: 100%;
+  height: auto;
+  position: fixed;
+  z-index: 2;
+
+  #resume {
+    a {
+      color: blue;
+      font-weight: 800;
+      &:hover {
+        color: $secondary-color;
+      }
+    }
+  }
+}
+
+#home {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  max-height: 100vh;
+  height: 60vh;
+  animation: main 3s  .5s forwards;
+}
+
+@keyframes main {
+  0% {
+    width: 0%;
+  }
+  50% {
+    #home {
+      width: 50%;
+      background-color: darken($secondary-color, 50);
+    }
+  }
+  100% {
+    width: 99%;
+    background-color: darken($primary-color, 20);
+    opacity: .9;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: set-color($primary-color);
+}
+
+.icons {
+  margin-top: 1rem;
+  user-select: none;
+  a {
+    padding: 0.4rem;
+  }
+  .fab-twitter {
+    color: blue;
+  }
+  .fa-facebook {
+    color: #003cff;
+  }
+  .fa-linkedin {
+    color: #0088ff;
+  }
+  .fa-github {
+    color: #fff;
+  }
+}
+
+.menu-btn {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  cursor: pointer;
+  z-index: 3;
+  user-select: none;
+  @include easeOut();
+
+  .btn-line {
+    width: 30px;
+    height: 3px;
+    background-color: set-color($primary-color);
+    margin: 5px;
+    @include easeOut();
+  }
+
+  &.close {
+    transform: rotate(180deg);
+
+    .btn-line {
+      &:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      &:nth-child(2) {
+        opacity: 0;
+      }
+      &:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+    }
+  }
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  opacity: 0.9;
+  visibility: hidden;
+
+  &.show {
+    visibility: visible;
+  }
+
+  &-branding,
+  &-nav {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    // height: 100vh;
+    float: left;
+    overflow: hidden;
+  }
+
+  &-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: darken($primary-color, 5);
+    @include easeOut();
+
+    &.show {
+      // slide in from top
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  &-branding {
+    margin: 0;
+    padding: 0;
+    background: lighten($primary-color, 5);
+    @include easeOut();
+
+    &.show {
+      // slide in from bottom
+      transform: translate3d(0, 0, 0);
+    }
+
+    .portrait {
+      // width: 300px;
+      // height: 300px;
+      border-radius: 50%;
+      border: 2px solid $secondary-color;
+      opacity: 1;
+      user-select: none;
+      @include easeOut();
+
+      img {
+        // width: 300px;
+        // height: 300px;
+        border-radius: 50%;
+      }
+    }
+
+    &.show {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .nav-item {
+    transform: translate3d(600px, 0, 0);
+    @include easeOut();
+
+    &.show {
+      transform: translate3d(0, 0, 0);
+    }
+    &.active > a {
+      color: $secondary-color;
+    }
+  }
+
+  .nav-link {
+    font-size: 30px;
+    display: inline-block;
+    color: set-color($primary-color);
+    padding: 1rem 0;
+    text-decoration: none;
+    font-weight: 300;
+    @include easeOut();
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}
+
+// delay each nav-item by .1s
+@for $x from 1 through 4 {
+  .nav-item:nth-child(#{$x}) {
+    transition-delay: $x * 0.1s;
+  }
+}
+
+#about {
+  padding: 0 5px;
+  display: flex;
+  flex-flow: column;
+  background-color: lighten($primary-color, 4);
+  opacity: .9;
+
+  .bio {
+    margin: 1rem 0;
+    width: 100%;
+
+    p {
+      width: 85vw;
+      // font-size: 30px;
+      text-align: center;
+      display: block;
+      margin: auto;
+    }
+  }
+}
+
+.skillsSec {
+  padding: 1rem 0;
+  // background: lighten($primary-color, 4);
+  margin: 1rem 0;
+  width: 100%;
+
+  .skills-container {
+    background-color: #0000;
+    display: flex;
+    justify-content: center;
+    span {
+      i {
+        margin: 10px;
+        font-size: 35px;
+        &.html5 {
+          color: red;
+        }
+        &.css3 {
+          color: #204bf6;
+        }
+        &.js {
+          color: orange;
+        }
+        &.sass {
+          color: palevioletred;
+        }
+      }
+    }
+  }
+}
+
+#edu {
+  background-color: $primary-color;
+  opacity: .9;
+  .education-section {
+    .edu1,
+    .edu2 {
+      background-color: darken($primary-color, 10);
+      width: calc(100% - 5%);
+      margin: 10px 5px;
+      padding: 10px 10px;
+      .delay {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #e4e4e4;
+        font-size: 14px;
+      }
+      .skills {
+        span {
+          margin: 0px 10px;
+        }
+      }
+      #grade, #skills {
+        font-weight: 900;
+      }
+    }
+    h3 {
+      color: set-color($primary-color);
+    }
+  }
+}
+
+#services {
+  padding: 1rem 0;
+  background-color: $primary-color;
+  opacity: .9;
+  h3 {
+    text-align: center;
+  }
+
+  .service {
+   display: grid;
+    gap: 10px;
+    margin: 10px 0;
+    .tool {
+      padding: 10px;
+      border-radius: 5px;
+      background-color: darken($primary-color, 10);
+      @include easeOut();
+      &:hover {
+        background-color: $secondary-color;
+        transform: translateY(-8px);
+      }
+      i {
+        font-size: 30px;
+        color: set-color($primary-color);
+        
+      }
+      p {
+        color: lighten(#7a7777, 30);
+      }
+    }
+  }
+}
+
+
+
+#projects {
+  background-color: darken($primary-color, 10);
+  padding: 10px 0px;
+  .proCollection {
+    display: grid;
+    gap: 10px;
+    .project {
+      display: flex;
+      flex-flow: column;
+      width: 100%;
+      background: #000;
+      padding: 10px;
+      .project-link {
+        color: #6868ee;
+        font-weight: 400;
+        text-decoration: underline;
+      }
+      .description {
+        color: #c2c2c2;
+      }
+      span {
+        i {
+          margin: 0 5px;
+  
+          &.html {
+            color: red;
+          }
+          &.css3 {
+            color: #204bf6;
+          }
+          &.js {
+            color: orange;
+          }
+          &.sass {
+            color: palevioletred;
+          }
+          &.tailwindcss {
+            color: #204bf6;
+          }
+        }
+      }
+  
+      .project-view {
+        display: flex;
+        flex-flow: row;
+        a {
+          text-decoration: underline;
+          margin: 10px 10px 0 0;
+          @include easeOut;
+          &:hover {
+            color: $secondary-color;
+          }
+        }
+        #project-demo {
+          text-decoration: none;
+        }
+      }
+      .skill {
+        p {
+          font-size: 14px;
+          font-weight: 700;
+          color: set-color($primary-color);
+        }
+      }
+    }
+  }
+
+  .githubBtn {
+    padding: 10px 5rem ;
+    background-color: black;
+    color: $secondary-color;
+    margin: auto;
+    display: block;
+    border: none;
+    outline: none;
+    @include easeOut();
+    &:hover {
+      background-color: $secondary-color;
+      color: black;
+    }
+  }
+}
+
+#contact{
+  background-color: $primary-color;
+  opacity: .9;
+  .emailme {
+    width: 100%;
+    display: grid;
+    & > div {
+      width: 100%;
+      height: 100%;
+    }
+    .contact {
+      background-color: darken($secondary-color, 50);
+      padding: 10px;
+      form {
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        padding: 10px;
+  
+        input {
+          margin: 10px 0;
+          border: none;
+          border-bottom: .5px solid $primary-color;
+          background-color: transparent;
+          outline: none;
+          padding: 10px;
+          color: white;
+          font-size: 18px;
+          &::placeholder {
+            font-size: 14px;
+          }
+        }
+  
+        button {
+          width: 50%;
+          padding: 10px 5px;
+          @include easeOut();
+          display: block;
+          margin: 20px auto;
+          border-radius: 5px;
+          border-color: $secondary-color;
+          &:hover {
+            color: $secondary-color;
+          }
+        }
+      }
+    }
+    
+    .contact-info {
+      background: lighten($primary-color, 10);
+      padding: 10px;
+      border-radius: 5px;
+      .info {
+        display: flex;
+        flex-direction: column;
+        
+      }
+    
+      ul li {
+        display: flex;
+        align-items: baseline;
+
+        i {
+          color: $secondary-color;
+          margin: 0 10px;
+        }
+      }
+    }
+  }
+}
+
+
+footer {
+  text-align: center;
+  font-size: 28px;
+  color: set-color($primary-color);
+}
