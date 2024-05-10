@@ -129,7 +129,7 @@
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   overflow-x: hidden; }
   #bg-image#bg-image {
-    background: url(../../imgs/mainbg.jpg);
+    background: url(../imgs/mainbg.jpg);
     background-size: cover;
     background-attachment: fixed; }
     #bg-image#bg-image::after {
@@ -241,7 +241,7 @@ a {
   visibility: hidden; }
   .menu.show {
     visibility: visible; }
-  .menu-branding, .menu-nav {
+  .menu-nav, .menu-branding {
     display: flex;
     flex-flow: column wrap;
     align-items: center;
